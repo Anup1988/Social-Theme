@@ -1,1 +1,1 @@
-# Social-Theme
+# Landing social media page
