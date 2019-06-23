@@ -21,7 +21,10 @@
   </head>
   <body>
     <!-- Start Here -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+      id="main-nav"
+    >
       <div class="container">
         <a href="#" class="navbar-brand">LoopLAB</a>
         <button
@@ -34,7 +37,7 @@
         <div class="collapse navbar-collapse" id="myNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a href="#home" class="nav-link active">Home</a>
+              <a href="#home-section" class="nav-link active">Home</a>
             </li>
             <li class="nav-item">
               <a href="#explore-head-section" class="nav-link">Explore</a>
@@ -135,7 +138,7 @@
       </div>
     </header>
     <!-- Explore Head -->
-    <section id="explore-head">
+    <section id="explore-head-section">
       <div class="container">
         <div class="row">
           <div class="col text-center py-5">
@@ -191,7 +194,7 @@
       </div>
     </section>
     <!-- Create Head -->
-    <section id="create-head" class="bg-primary">
+    <section id="create-head-section" class="bg-primary">
       <div class="container">
         <div class="row">
           <div class="col text-center py-5">
@@ -247,7 +250,7 @@
       </div>
     </section>
     <!-- Share Head -->
-    <section id="share-head" class="bg-primary">
+    <section id="share-head-section" class="bg-primary">
       <div class="container">
         <div class="row">
           <div class="col text-center py-5">
@@ -302,7 +305,68 @@
         </div>
       </div>
     </section>
-
+    <!-- Footer -->
+    <footer id="main-footer" class="bg-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col text-center py-4">
+            <h3>LoopLAB</h3>
+            <p>Copyright &copy; <span id="year"></span></p>
+            <button
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#myModal"
+            >
+              Contact Us
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Contact Modal -->
+    <div class="modal fade text-dark" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Contact Us</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label for="textarea">Message</label>
+                <textarea
+                  type="email"
+                  id="textarea"
+                  class="form-control"
+                  rows="2"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-block btn-primary">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Jquery,bootstrap and popper.js -->
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -319,5 +383,33 @@
       integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
       crossorigin="anonymous"
     ></script>
+    <script>
+      //current year
+      $("#year").text(new Date().getFullYear());
+
+      //Init Scrollspy
+      $("body").scrollspy({ target: "#main-nav" });
+
+      //Smooth scrolling
+      $("#main-nav a").on("click", function(e) {
+        //check for hash value
+        if (this.hash !== "") {
+          //prevent default behavior
+          e.preventDefault();
+          //store hash
+          const hash = this.hash;
+          // animate smooth scroll
+          $("html, body").animate(
+            {
+              scrollTop: $(hash).offset().top
+            },
+            900,
+            function() {
+              window.location.hash = hash;
+            }
+          );
+        }
+      });
+    </script>
   </body>
 </html>
